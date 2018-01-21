@@ -22,22 +22,13 @@ class device_handler(debounce_handler):
     """
     #TRIGGERS = {str(sys.argv[1]): int(sys.argv[2])}
     #TRIGGERS = {"office": 52000}
-    TRIGGERS = {"kitchen": 52000, "living room": 51000, "office": 53000, "room": 52002, "tv": 52003, "pc": 52004,
-                "xbox": 52005, "light": 52006}
+    TRIGGERS = {"kitchen": 52000,"living room":51000}
 
     def act(self, client_address, state, name):
         print("State", state, "from client @", client_address)
         # GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
         # GPIO.setup(int(7), GPIO.OUT)   ## Setup GPIO Pin to OUTPUT
         # GPIO.output(int(7), state) ## State is true/false
-
-        ############# Uncomment this code to revers the relay polarity ############
-        # if state==True:
-        #     state = False
-        # else:
-        #     state = True
-        ############# Uncomment this code to revers the relay polarity ############
-
         if name=="kitchen":
             GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
             GPIO.setup(int(7), GPIO.OUT)   ## Setup GPIO Pin to OUTPUT
@@ -46,30 +37,6 @@ class device_handler(debounce_handler):
             GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
             GPIO.setup(int(11), GPIO.OUT)   ## Setup GPIO Pin to OUTPUT
             GPIO.output(int(11), state) ## State is true/false
-        elif name =="office":
-            GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
-            GPIO.setup(int(13), GPIO.OUT)   ## Setup GPIO Pin to OUTPUT
-            GPIO.output(int(13), state) ## State is true/false
-        elif name == "room":
-            GPIO.setmode(GPIO.BOARD)  ## Use board pin numbering
-            GPIO.setup(int(5), GPIO.OUT)  ## Setup GPIO Pin to OUTPUT
-            GPIO.output(int(5), state)  ## State is true/false
-        elif name == "tv":
-            GPIO.setmode(GPIO.BOARD)  ## Use board pin numbering
-            GPIO.setup(int(13), GPIO.OUT)  ## Setup GPIO Pin to OUTPUT
-            GPIO.output(int(13), state)  ## State is true/false
-        elif name == "pc":
-            GPIO.setmode(GPIO.BOARD)  ## Use board pin numbering
-            GPIO.setup(int(8), GPIO.OUT)  ## Setup GPIO Pin to OUTPUT
-            GPIO.output(int(8), state)  ## State is true/false
-        elif name == "xbox":
-            GPIO.setmode(GPIO.BOARD)  ## Use board pin numbering
-            GPIO.setup(int(12), GPIO.OUT)  ## Setup GPIO Pin to OUTPUT
-            GPIO.output(int(12), state)  ## State is true/false
-        elif name == "light":
-            GPIO.setmode(GPIO.BOARD)  ## Use board pin numbering
-            GPIO.setup(int(10), GPIO.OUT)  ## Setup GPIO Pin to OUTPUT
-            GPIO.output(int(10), state)  ## State is true/false
         else:
             print("Device not found!")
 
